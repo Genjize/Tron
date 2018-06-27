@@ -24,11 +24,13 @@ public abstract class Main {
     	System.out.println("Lol");
         final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
 
-        try {
+        
+        		// BDD  //
+       /* try {
             controller.start();
         } catch (final SQLException exception) {
             exception.printStackTrace();
-        }
+        } */
     }
 
 }
