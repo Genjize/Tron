@@ -8,12 +8,12 @@ import javax.imageio.ImageIO;
 
 
 class Mobile implements IMobile {
-	private Direction				direction;
+	private Direction direction;
 	private final Position	position;
 	private final Dimension	dimension;
-	private final int				speed;
+	private final int speed;
 	private ITronModel	tronModel;
-	private Image						images[];
+	private Image images[];
 
 	public Mobile(final Direction direction, final Position position, final Dimension dimension, final int speed, final String image) {
 		this.direction = direction;

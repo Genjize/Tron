@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 public class TronModel extends Observable implements ITronModel {
-	private Grid												grid;
+	private Grid grid;
 	private final ArrayList<IMobile>	mobiles;
+	private final ArrayList<IMobileless> mobilesless;
 
 	public TronModel() {
 		this.mobiles = new ArrayList<>();
+		this.mobilesless = new ArrayList<>();
 	}
 
 	@Override
@@ -31,10 +33,26 @@ public class TronModel extends Observable implements ITronModel {
 	public void removeMobile(final IMobile mobile) {
 		this.mobiles.remove(mobile);
 	}
+	
+	@Override
+	public void addMobileless(final IMobileless mobileless) {
+		this.mobilesless.add(mobileless);
+		mobileless.setTronModel(this);
+	}
+
+	@Override
+	public void removeMobileless(final IMobileless mobileless) {
+		this.mobilesless.remove(mobileless);
+	}
 
 	@Override
 	public ArrayList<IMobile> getMobiles() {
 		return this.mobiles;
+	}
+	
+	@Override
+	public ArrayList<IMobileless> getMobilesless() {
+		return this.mobilesless;
 	}
 
 	@Override

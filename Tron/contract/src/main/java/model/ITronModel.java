@@ -16,4 +16,10 @@ public interface ITronModel {
 	public IMobile getMobileByPlayer(int player);
 
 	public void setMobilesHavesMoved();
+
+	public ArrayList<IMobileless> getMobilesless();
+	
+	public void addMobileless(final IMobileless mobileless);
+
+	public void removeMobileless(final IMobileless mobileless);
 }
