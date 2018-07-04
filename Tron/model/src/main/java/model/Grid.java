@@ -7,7 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 class Grid implements IArea {
-	private static String		IMAGE	= "sky.png";
+	private static String		IMAGE	= "grid.png";
 	private final IDimension	dimension;
 	private Image						image;
 
