@@ -1,7 +1,11 @@
 package controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
+
+import model.Direction;
+import model.IMobile;
+import model.ITronModel;
+import view.IViewSystem;
 
 
 public class TronController implements IOrderPerformer {

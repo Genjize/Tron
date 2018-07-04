@@ -17,7 +17,7 @@ public class TronModel extends Observable implements ITronModel {
 	}
 
 	@Override
-	public void buildArea(final Dimension dimension) {
+	public void buildArea(final IDimension dimension) {
 		this.grid = new Grid(dimension);
 	}
 

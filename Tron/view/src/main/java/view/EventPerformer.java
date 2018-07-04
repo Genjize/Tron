@@ -2,11 +2,9 @@ package view;
 
 import java.awt.event.KeyEvent;
 
-import jpu2016.dogfight.controller.IOrderPerformer;
-import jpu2016.dogfight.controller.IUserOrder;
-import jpu2016.dogfight.controller.Order;
-import jpu2016.dogfight.controller.UserOrder;
-import jpu2016.gameframe.IEventPerformer;
+import controller.IOrderPerformer;
+import controller.Order;
+import controller.UserOrder;
 
 class EventPerformer implements IEventPerformer {
 	private final IOrderPerformer orderPerformer;
@@ -17,14 +15,14 @@ class EventPerformer implements IEventPerformer {
 
 	@Override
 	public void eventPerform(final KeyEvent keyCode) {
-		final IUserOrder userOrder = this.keyCodeToUserOrder(keyCode.getKeyCode());
+		final UserOrder userOrder = this.keyCodeToUserOrder(keyCode.getKeyCode());
 		if (userOrder != null) {
 			this.orderPerformer.orderPerform(userOrder);
 		}
 	}
 
-	private IUserOrder keyCodeToUserOrder(final int keyCode) {
-		IUserOrder userOrder;
+	private UserOrder keyCodeToUserOrder(final int keyCode) {
+		UserOrder userOrder;
 		switch (keyCode) {
 			case KeyEvent.VK_RIGHT:
 				userOrder = new UserOrder(0, Order.RIGHT);

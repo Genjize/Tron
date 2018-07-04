@@ -8,9 +8,9 @@ public interface IMobile {
 
 	public void setDirection(final Direction direction);
 
-	public Position getPosition();
+	public IPosition getPosition();
 
-	public Dimension getDimension();
+	public IDimension getDimension();
 
 	public int getWidth();
 

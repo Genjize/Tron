@@ -3,7 +3,7 @@ package model;
 import java.util.ArrayList;
 
 public interface ITronModel {
-	public void buildArea(final Dimension dimension);
+	public void buildArea(final IDimension dimension);
 
 	public IArea getArea();
 

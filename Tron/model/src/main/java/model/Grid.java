@@ -8,10 +8,10 @@ import javax.imageio.ImageIO;
 
 class Grid implements IArea {
 	private static String		IMAGE	= "sky.png";
-	private final Dimension	dimension;
+	private final IDimension	dimension;
 	private Image						image;
 
-	public Grid(final Dimension dimension) {
+	public Grid(final IDimension dimension) {
 		this.dimension = dimension;
 		try {
 			this.image = ImageIO.read(new File("images/" + IMAGE));
@@ -21,7 +21,7 @@ class Grid implements IArea {
 	}
 
 	@Override
-	public Dimension getDimension() {
+	public IDimension getDimension() {
 		return this.dimension;
 	}
 

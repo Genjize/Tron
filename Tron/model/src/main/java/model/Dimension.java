@@ -1,6 +1,6 @@
 package model;
 
-public class Dimension {
+public class Dimension implements IDimension{
 	private int	width;
 	private int	height;
 

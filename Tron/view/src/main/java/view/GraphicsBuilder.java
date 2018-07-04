@@ -6,9 +6,8 @@ import java.awt.Transparency;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 
-import jpu2016.dogfight.model.IDogfightModel;
-import jpu2016.dogfight.model.IMobile;
-import jpu2016.gameframe.IGraphicsBuilder;
+import model.ITronModel;
+import model.IMobile;
 
 class GraphicsBuilder implements IGraphicsBuilder {
 	private final ITronModel	tronModel;
