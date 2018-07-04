@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+
 class Mobile implements IMobile {
 	private Direction				direction;
 	private final Position	position;
@@ -19,6 +20,7 @@ class Mobile implements IMobile {
 		this.position = position;
 		this.dimension = dimension;
 		this.speed = speed;
+		
 		try {
 			this.buildAllimages(image);
 		} catch (final IOException e) {
@@ -55,24 +57,45 @@ class Mobile implements IMobile {
 	@Override
 	public void move() {
 		switch (this.direction) {
-			case RIGHT:
-				this.moveRight();
-				break;
+		
 			case LEFT:
 				this.moveLeft();
 				break;
+			
+			case RIGHT:
+				this.moveRight();
+				break;
+				
+			case UP:
+				this.moveUp();
+				break;
+				
+			case DOWN:
+				this.moveDown();
+				break;
+
 			default:
 				break;
 		}
+	}
+	
+	private void moveUp() {
+		this.position.setY(this.position.getY() - this.speed);
 	}
 
 	private void moveRight() {
 		this.position.setX(this.position.getX() + this.speed);
 	}
 
+	private void moveDown() {
+		this.position.setY(this.position.getY() + this.speed);
+	}
+
 	private void moveLeft() {
 		this.position.setX(this.position.getX() - this.speed);
 	}
+
+
 
 	@Override
 	public boolean isPlayer(final int player) {
@@ -126,7 +149,9 @@ class Mobile implements IMobile {
 	}
 
 	private void buildAllimages(final String imageName) throws IOException {
-		this.images = new Image[2];
+		this.images = new Image[4];
+		this.images[Direction.UP.ordinal()] = ImageIO.read(new File("images/" + imageName + "_UP.png"));
+		this.images[Direction.DOWN.ordinal()] = ImageIO.read(new File("images/" + imageName + "_DOWN.png"));
 		this.images[Direction.RIGHT.ordinal()] = ImageIO.read(new File("images/" + imageName + "_RIGHT.png"));
 		this.images[Direction.LEFT.ordinal()] = ImageIO.read(new File("images/" + imageName + "_LEFT.png"));
 	}

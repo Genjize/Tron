@@ -21,24 +21,58 @@ public class TronController implements IOrderPerformer {
 	@Override
 	public void orderPerform(final IUserOrder userOrder) {
 		if (userOrder != null) {
-			final IMobile plane = this.tronModel.getMobileByPlayer(userOrder.getPlayer());
-			if (plane != null) {
-				Direction direction;
+			final IMobile lightcycle = this.tronModel.getMobileByPlayer(userOrder.getPlayer());
+			if (lightcycle != null) {
+				Direction direction  = lightcycle.getDirection();
 				switch (userOrder.getOrder()) {
 
-					case RIGHT:
-						direction = Direction.RIGHT;
-						break;
 					case LEFT:
-						direction = Direction.LEFT;
+						
+						if(direction == Direction.LEFT) {
+							direction = Direction.DOWN;
+						}
+						
+						else if(direction == Direction.RIGHT) {
+							direction = Direction.UP;
+						}
+						
+						else if(direction == Direction.UP) {
+							direction = Direction.LEFT;
+						}
+						
+						else if(direction == Direction.DOWN) {
+							direction = Direction.RIGHT;
+						}
+						
 						break;
+						
+					case RIGHT:
+						
+						if(direction == Direction.LEFT) {
+							direction = Direction.UP;
+						}
+						
+						else if(direction == Direction.RIGHT) {
+							direction = Direction.DOWN;
+						}
+						
+						else if(direction == Direction.UP) {
+							direction = Direction.RIGHT;
+						}
+						
+						else if(direction == Direction.DOWN) {
+							direction = Direction.LEFT;
+						}
+						
+						break;
+						
 					case NOP:
 					default:
 						direction = this.tronModel.getMobileByPlayer(userOrder.getPlayer()).getDirection();
 						break;
 						
 				}
-				plane.setDirection(direction);
+				lightcycle.setDirection(direction);
 			}
 		}
 	}
