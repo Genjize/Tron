@@ -1,10 +1,14 @@
 package controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import model.Direction;
 import model.IMobile;
+import model.IMobileless;
+import model.IPosition;
 import model.ITronModel;
+import model.IWall;
 import view.IViewSystem;
 
 
@@ -77,27 +81,17 @@ public class TronController implements IOrderPerformer {
 		}
 	}
 
-	/*
-	private void lauchMissile(final int player) throws IOException {
-		final IMobile plane = this.tronModel.getMobileByPlayer(player);
-		if (plane != null) {
-			final Position position = new Position(plane.getPosition().getX() + ((plane.getWidth() - Missile.getWidthWithADirection(plane.getDirection())) / 2),
-					plane.getPosition().getY() + ((plane.getHeight() - Missile.getHeightWithADirection(plane.getDirection())) / 2));
-			this.tronModel.addMobile(new Missile(plane.getDirection(), position));
-			switch (plane.getDirection()) {
-				case RIGHT:
-					position.setX(position.getX() + plane.getWidth() + plane.getSpeed());
-					break;
-				case LEFT:
-					position.setX(position.getX() - plane.getWidth() - plane.getSpeed());
-					break;
-				default:
-					break;
-			}
+/*
+	private void createWalls(final int player) throws IOException {
+		final IMobile lightcycle = this.tronModel.getMobileByPlayer(player);
+		
+		if (lightcycle != null) {
+			final IPosition position = new IPosition(lightcycle.getPosition().getX(),lightcycle.getPosition().getY() );
+			this.tronModel.addMobileless(new IWall(position));
 		}
-	} */
+	}  */
 
-	private boolean isWeaponOnMobile(final IMobile mobile, final IMobile weapon) {
+	private boolean isWeaponOnMobile(final IMobile mobile, final IMobileless weapon) {
 		if (((weapon.getPosition().getX() / weapon.getWidth()) >= (mobile.getPosition().getX() / weapon.getWidth()))
 				&& ((weapon.getPosition().getX() / weapon.getWidth()) <= ((mobile.getPosition().getX() + mobile.getWidth()) / weapon.getWidth()))) {
 			if (((weapon.getPosition().getY() / weapon.getHeight()) >= (mobile.getPosition().getY() / weapon.getHeight()))
@@ -108,20 +102,20 @@ public class TronController implements IOrderPerformer {
 		return false;
 	}
 
-	private void manageCollision(final IMobile weapon) {
+	private void manageCollision(final IMobile mobile, final IMobileless weapon) {
 		final ArrayList<IMobile> target = new ArrayList<IMobile>();
 		boolean isTargetHit = false;
 
-		for (final IMobile mobile : this.tronModel.getMobiles()) {
+		for (final IMobile mobiles : this.tronModel.getMobiles()) {
 			if (this.isWeaponOnMobile(mobile, weapon)) {
-				target.add(mobile);
+				target.add(mobiles);
 			}
 		}
-		for (final IMobile mobile : target) {
+		for (final IMobile mobiles : target) {
 			isTargetHit = isTargetHit || mobile.hit();
 		}
 		if (isTargetHit) {
-			this.tronModel.removeMobile(weapon);
+			this.tronModel.removeMobileless(weapon);
 			this.isGameOver = true;
 		}
 	}
@@ -141,15 +135,25 @@ public class TronController implements IOrderPerformer {
 			}
 
 			final ArrayList<IMobile> initialMobiles = new ArrayList<IMobile>();
+			final ArrayList<IMobileless> initialMobilesless = new ArrayList<IMobileless>();
+			
 			for (final IMobile mobile : this.tronModel.getMobiles()) {
 				initialMobiles.add(mobile);
 			}
-			for (final IMobile mobile : initialMobiles) {
+			for (final IMobileless mobileless : this.tronModel.getMobilesless()) {
+				initialMobilesless.add(mobileless);
+			}
+			
+			for (final IMobile mobile : initialMobiles){
 				mobile.move();
-				if (mobile.isWeapon()) {
-					this.manageCollision(mobile);
+				
+				for (final IMobileless mobileless : initialMobilesless) {
+					if (mobileless.isWeapon()) {
+						this.manageCollision(mobile, mobileless);
+					}
 				}
 			}
+			
 			this.tronModel.setMobilesHavesMoved();
 		}
 	}
