@@ -25,7 +25,9 @@ class MobileLess implements IMobileless{
 	}
 
 	private void buildImage(final String imageName) throws IOException {
-		this.setImage(ImageIO.read(new File("images/" + imageName + ".png")));
+		
+		//this.setImage(ImageIO.read(new File("images/" + imageName + ".png")));
+		this.setImage(ImageIO.read(new File("images/player1.png")));
 	}
 
 	public Image getImage() {

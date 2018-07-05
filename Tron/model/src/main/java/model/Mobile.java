@@ -15,12 +15,14 @@ class Mobile implements IMobile {
 	private ITronModel	tronModel;
 	private Image images[];
 	private String imageName;
+	private int player;
 
-	public Mobile(final Direction direction, final Position position, final Dimension dimension, final int speed, final String image) {
+	public Mobile(final int player,final Direction direction, final Position position, final Dimension dimension, final int speed, final String image) {
 		this.direction = direction;
 		this.position = position;
 		this.dimension = dimension;
 		this.speed = speed;
+		this.player = player;
 		
 		try {
 			this.buildAllimages(image);
@@ -168,5 +170,13 @@ class Mobile implements IMobile {
 	
 	public void setImageName(String imageName) {
 		this.imageName = imageName;
+	}
+
+	public int getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(int player) {
+		this.player = player;
 	}
 }

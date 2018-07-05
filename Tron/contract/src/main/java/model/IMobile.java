@@ -35,4 +35,8 @@ public interface IMobile {
 	public String getImageName();
 	
 	public void setImageName(String imageName);
+	
+	public int getPlayer();
+	
+	public void setPlayer(int player);
 }

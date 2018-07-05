@@ -17,6 +17,7 @@ public class TronController implements IOrderPerformer {
 	private final ITronModel	tronModel;
 	private boolean								isGameOver	= false;
 	private IViewSystem						viewSystem;
+	private int y;
 
 	public TronController(final ITronModel tronModel) {
 		this.tronModel = tronModel;
@@ -121,12 +122,19 @@ public class TronController implements IOrderPerformer {
 	}
 
 	public void play() {
-		this.gameLoop();
-		this.viewSystem.displayMessage("Game Over !");
-		this.viewSystem.closeAll();
+		int b = this.gameLoop();
+		if(b==1) {
+			this.viewSystem.displayMessage("Player 1 WIN");
+			this.viewSystem.closeAll();
+		}
+		else if(b==2) {
+			this.viewSystem.displayMessage("Player 2 WIN");
+			this.viewSystem.closeAll();
+		}
 	}
 
-	private void gameLoop() {
+	private int gameLoop() {
+		int a = 1;
 		while (!this.isGameOver) {
 			try {
 				Thread.sleep(TIME_SLEEP);
@@ -146,6 +154,7 @@ public class TronController implements IOrderPerformer {
 			
 			for (final IMobile mobile : initialMobiles){
 				mobile.move();
+				a = mobile.getPlayer();
 				
 				for (final IMobileless mobileless : initialMobilesless) {
 					if (mobileless.isWeapon()) {
@@ -153,9 +162,11 @@ public class TronController implements IOrderPerformer {
 					}
 				}
 			}
-			
 			this.tronModel.setMobilesHavesMoved();
 		}
+		
+		return a;
+		
 	}
 
 	public void setViewSystem(final IViewSystem viewSystem) {
