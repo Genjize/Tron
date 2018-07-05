@@ -86,8 +86,8 @@ public class TronController implements IOrderPerformer {
 		final IMobile lightcycle = this.tronModel.getMobileByPlayer(player);
 		
 		if (lightcycle != null) {
-			final IPosition position = new IPosition(lightcycle.getPosition().getX(),lightcycle.getPosition().getY() );
-			this.tronModel.addMobileless(new IWall(position));
+			final IPosition position = new Position(lightcycle.getPosition().getX(),lightcycle.getPosition().getY() );
+			this.tronModel.addMobileless(new Wall(position, lightcycle.getImageName()));
 		}
 	}  */
 

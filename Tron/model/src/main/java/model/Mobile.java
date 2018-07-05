@@ -14,6 +14,7 @@ class Mobile implements IMobile {
 	private final int speed;
 	private ITronModel	tronModel;
 	private Image images[];
+	private String imageName;
 
 	public Mobile(final Direction direction, final Position position, final Dimension dimension, final int speed, final String image) {
 		this.direction = direction;
@@ -159,5 +160,13 @@ class Mobile implements IMobile {
 	@Override
 	public Image getImage() {
 		return this.images[this.direction.ordinal()];
+	}
+	
+	public String getImageName() {
+		return this.imageName;
+	}
+	
+	public void setImageName(String imageName) {
+		this.imageName = imageName;
 	}
 }

@@ -32,4 +32,7 @@ public interface IMobile {
 
 	public boolean isWeapon();
 
+	public String getImageName();
+	
+	public void setImageName(String imageName);
 }
