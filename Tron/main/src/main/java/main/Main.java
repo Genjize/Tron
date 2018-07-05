@@ -1,13 +1,18 @@
 package main;
 
+import java.sql.SQLException;
+
+import controller.ControllerFacade;
 import controller.TronController;
 import model.Dimension;
 import model.Direction;
 import model.LightCycle;
+import model.ModelFacade;
 import model.Position;
 import model.TronModel;
 import model.Wall;
 import view.TronView;
+import view.ViewFacade;
 
 /*
 import java.sql.SQLException;
@@ -45,15 +50,15 @@ public abstract class Main {
 		tronController.setViewSystem(tronView);
 		tronController.play();
     	
-       // final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
+       final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
 
         
         		// BDD  //
-       /* try {
+        try {
             controller.start();
         } catch (final SQLException exception) {
             exception.printStackTrace();
-        } */
+        } 
     }
 
 }

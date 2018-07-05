@@ -9,7 +9,7 @@ import java.sql.ResultSet;
  * @author Jean-Aymeric DIET jadiet@cesi.fr
  * @version 1.0
  */
-public abstract class AbstractDAO {
+public abstract class TronDAO {
 
     /**
      * Execute query.

@@ -1,14 +1,11 @@
 package controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import model.Direction;
 import model.IMobile;
 import model.IMobileless;
-import model.IPosition;
 import model.ITronModel;
-import model.IWall;
 import view.IViewSystem;
 
 
@@ -165,6 +162,7 @@ public class TronController implements IOrderPerformer {
 		}
 		
 	}
+
 
 	public void setViewSystem(final IViewSystem viewSystem) {
 		this.viewSystem = viewSystem;
