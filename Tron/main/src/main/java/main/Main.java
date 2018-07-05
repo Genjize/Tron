@@ -34,8 +34,8 @@ public abstract class Main {
 		final TronModel tronModel = new TronModel();
 
 		tronModel.buildArea(new Dimension(600, 400));
-		tronModel.addMobile(new LightCycle(0, Direction.RIGHT, new Position(10, 60), "player1"));
-		tronModel.addMobile(new LightCycle(1, Direction.RIGHT, new Position(10, 300), "player2"));
+		tronModel.addMobile(new LightCycle(0, Direction.UP, new Position(50, 360), "player1"));
+		tronModel.addMobile(new LightCycle(1, Direction.UP, new Position(500, 360), "player2"));
 	
 
 		final TronController tronController = new TronController(tronModel);
