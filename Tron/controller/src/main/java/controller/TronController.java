@@ -97,6 +97,7 @@ public class TronController implements IOrderPerformer {
 				&& ((weapon.getPosition().getX() / weapon.getWidth()) <= ((mobile.getPosition().getX() + mobile.getWidth()) / weapon.getWidth()))) {
 			if (((weapon.getPosition().getY() / weapon.getHeight()) >= (mobile.getPosition().getY() / weapon.getHeight()))
 					&& ((weapon.getPosition().getY() / weapon.getHeight()) <= ((mobile.getPosition().getY() + mobile.getHeight()) / weapon.getHeight()))) {
+				this.y = mobile.getPlayer();
 				return true;
 			}
 		}
@@ -122,19 +123,18 @@ public class TronController implements IOrderPerformer {
 	}
 
 	public void play() {
-		int b = this.gameLoop();
-		if(b==1) {
+		this.gameLoop();
+		if(y==1) {
 			this.viewSystem.displayMessage("Player 1 WIN");
 			this.viewSystem.closeAll();
 		}
-		else if(b==2) {
+		else if(y==0) {
 			this.viewSystem.displayMessage("Player 2 WIN");
 			this.viewSystem.closeAll();
 		}
 	}
 
-	private int gameLoop() {
-		int a = 1;
+	private void gameLoop() {
 		while (!this.isGameOver) {
 			try {
 				Thread.sleep(TIME_SLEEP);
@@ -154,7 +154,6 @@ public class TronController implements IOrderPerformer {
 			
 			for (final IMobile mobile : initialMobiles){
 				mobile.move();
-				a = mobile.getPlayer();
 				
 				for (final IMobileless mobileless : initialMobilesless) {
 					if (mobileless.isWeapon()) {
@@ -164,8 +163,6 @@ public class TronController implements IOrderPerformer {
 			}
 			this.tronModel.setMobilesHavesMoved();
 		}
-		
-		return a;
 		
 	}
 
