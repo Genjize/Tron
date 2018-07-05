@@ -125,11 +125,11 @@ public class TronController implements IOrderPerformer {
 	public void play() {
 		this.gameLoop();
 		if(y==1) {
-			this.viewSystem.displayMessage("Player 1 WIN");
+			this.viewSystem.displayMessage("Player1 / BLUE - WIN");
 			this.viewSystem.closeAll();
 		}
 		else if(y==0) {
-			this.viewSystem.displayMessage("Player 2 WIN");
+			this.viewSystem.displayMessage("Player2 / RED - WIN");
 			this.viewSystem.closeAll();
 		}
 	}
