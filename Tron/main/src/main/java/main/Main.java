@@ -41,8 +41,8 @@ public abstract class Main {
 
 		tronModel.buildArea(new Dimension(600, 400));
 		tronModel.addMobile(new LightCycle(0, Direction.UP, new Position(50, 360), "player1"));
-		tronModel.addMobileless(new Wall(new Position(1, 1), "player1"));
 		tronModel.addMobile(new LightCycle(1, Direction.UP, new Position(500, 360), "player2"));
+		//tronModel.addMobileless(new Wall(new Position(1, 1), "player2"));
 	
 
 		final TronController tronController = new TronController(tronModel);

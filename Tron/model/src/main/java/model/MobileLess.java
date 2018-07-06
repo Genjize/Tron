@@ -25,9 +25,7 @@ class MobileLess implements IMobileless{
 	}
 
 	private void buildImage(final String imageName) throws IOException {
-		
-		//this.setImage(ImageIO.read(new File("images/" + imageName + ".png")));
-		this.setImage(ImageIO.read(new File("images/player1.png")));
+		this.setImage(ImageIO.read(new File("images/" + imageName + ".png")));
 	}
 
 	public Image getImage() {
@@ -62,7 +60,7 @@ class MobileLess implements IMobileless{
 	
 	@Override
 	public boolean isWeapon() {
-		return false;
+		return true;
 	}
 
 	@Override
