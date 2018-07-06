@@ -40,8 +40,8 @@ public abstract class Main {
 		final TronModel tronModel = new TronModel();
 
 		tronModel.buildArea(new Dimension(600, 400));
-		tronModel.addMobile(new LightCycle(0, Direction.UP, new Position(50, 360), "player1"));
-		tronModel.addMobile(new LightCycle(1, Direction.UP, new Position(500, 360), "player2"));
+		tronModel.addMobile(new LightCycle(0, Direction.UP, new Position(50, 360),new Position(50, 360), "player1"));
+		tronModel.addMobile(new LightCycle(1, Direction.UP, new Position(500, 360),new Position(500, 360), "player2"));
 		//tronModel.addMobileless(new Wall(new Position(1, 1), "player2"));
 	
 
@@ -50,7 +50,7 @@ public abstract class Main {
 		tronController.setViewSystem(tronView);
 		tronController.play();
     	
-       final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
+    /*   final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
 
         
         		// BDD  //
@@ -58,7 +58,7 @@ public abstract class Main {
             controller.start();
         } catch (final SQLException exception) {
             exception.printStackTrace();
-        } 
-    }
+        } */
+    } 
 
 }

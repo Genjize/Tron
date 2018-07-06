@@ -1,11 +1,14 @@
 package controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import model.Direction;
 import model.IMobile;
 import model.IMobileless;
 import model.ITronModel;
+import model.Position;
+import model.Wall;
 import view.IViewSystem;
 
 
@@ -26,6 +29,7 @@ public class TronController implements IOrderPerformer {
 			final IMobile lightcycle = this.tronModel.getMobileByPlayer(userOrder.getPlayer());
 			if (lightcycle != null) {
 				Direction direction  = lightcycle.getDirection();
+				
 				switch (userOrder.getOrder()) {
 
 					case LEFT:
@@ -69,6 +73,7 @@ public class TronController implements IOrderPerformer {
 						break;
 						
 					case NOP:
+						
 					default:
 						direction = this.tronModel.getMobileByPlayer(userOrder.getPlayer()).getDirection();
 						break;
@@ -78,14 +83,44 @@ public class TronController implements IOrderPerformer {
 			}
 		}
 	}
-
+	/*
+	private void createWalls(final int player) throws IOException {
+		int x = 0;
+		int y = 0;
+		final IMobile plane = this.tronModel.getMobileByPlayer(player);
+		if (plane != null) {
+			switch (plane.getDirection()) {
+			case UP:
+				x = plane.getPosition().getX();
+				y = (plane.getPosition().getY() + 32);
+				break;
+			case RIGHT:
+				x = (plane.getPosition().getX() - 32);
+				y = plane.getPosition().getY();
+				break;
+			case DOWN:
+				x = plane.getPosition().getX();
+				y = (plane.getPosition().getY() - 32);
+				break;
+			case LEFT:
+				x = (plane.getPosition().getX() + 32);
+				y = plane.getPosition().getY();
+				break;
+			default:
+				break;
+		}
+			Position position = new Position(x,y);
+			this.tronModel.addMobileless(new Wall(plane.getDirection(), position, "player1"));
+		}
+	} */
+	
 /*
 	private void createWalls(final int player) throws IOException {
 		final IMobile lightcycle = this.tronModel.getMobileByPlayer(player);
 		
 		if (lightcycle != null) {
-			final IPosition position = new Position(lightcycle.getPosition().getX(),lightcycle.getPosition().getY());
-			this.tronModel.addMobileless(new Wall(position, lightcycle.getImageName()));
+			final Position position = new Position(lightcycle.getOlderPosition().getX(),lightcycle.getOlderPosition().getY());
+			tronModel.addMobileless(new Wall(position, "player1"));
 		}
 	}  */
 

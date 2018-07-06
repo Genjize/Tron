@@ -7,6 +7,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 
+
 class Mobile implements IMobile {
 	private Direction direction;
 	private final Position	position;
@@ -16,10 +17,13 @@ class Mobile implements IMobile {
 	private Image images[];
 	private String imageName;
 	private int player;
+	
+	private final Position olderposition;
 
-	public Mobile(final int player,final Direction direction, final Position position, final Dimension dimension, final int speed, final String image) {
+	public Mobile(final int player,final Direction direction, final Position position, final Position olderPosition, final Dimension dimension, final int speed, final String image) {
 		this.direction = direction;
 		this.position = position;
+		this.olderposition = olderPosition;
 		this.dimension = dimension;
 		this.speed = speed;
 		this.player = player;
@@ -30,6 +34,8 @@ class Mobile implements IMobile {
 			e.printStackTrace();
 		}
 	}
+	
+	
 
 	@Override
 	public Direction getDirection() {
@@ -45,7 +51,12 @@ class Mobile implements IMobile {
 	public Position getPosition() {
 		return this.position;
 	}
-
+	
+	@Override
+	public Position getOlderPosition() {
+		return this.olderposition;
+	}
+	
 	@Override
 	public Dimension getDimension() {
 		return this.dimension;
@@ -78,8 +89,62 @@ class Mobile implements IMobile {
 				break;
 
 			default:
+				
 				break;
 		}
+		try {
+			this.createWalls();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	private void createWalls() throws IOException {
+		int x = 0;
+		int y = 0;
+		
+		x = (getPosition().getX());
+		y = (getPosition().getY());
+			switch (direction) {
+			
+			case UP:
+				y = (y + getHeight() + 2);
+		
+				break;
+			case RIGHT:
+				x = (x - getHeight() - 2);
+				
+				break;
+			case DOWN:
+				y = (y - getHeight() - 2);
+				
+				break;
+			case LEFT:
+				x = (x + getHeight() + 2);
+				
+				break;
+			default:
+				break;
+		}
+				if(x>600) {
+					x = x - 600;
+			}
+			
+				else if(x<0) {
+					x = x + 600;
+				
+			}
+				if(y>400) {
+					y = y - 400;
+			}
+			
+				else if(y<0) {
+					y = y + 400;
+			}
+				
+			Position position1 = new Position(x,y);
+			this.tronModel.addMobileless(new Wall(direction, position1, "player1"));
+			
 	}
 	
 	private void moveUp() {

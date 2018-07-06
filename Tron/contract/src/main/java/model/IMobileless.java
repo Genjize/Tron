@@ -19,4 +19,9 @@ public interface IMobileless {
 	public void setTronModel(ITronModel tronModel);
 
 	public boolean isWeapon();
+	
+	public Direction getDirection();
+
+	public void setDirection(final Direction direction);
+
 }

@@ -9,6 +9,8 @@ public interface IMobile {
 	public void setDirection(final Direction direction);
 
 	public IPosition getPosition();
+	
+	public IPosition getOlderPosition();
 
 	public IDimension getDimension();
 
@@ -39,4 +41,5 @@ public interface IMobile {
 	public int getPlayer();
 	
 	public void setPlayer(int player);
+	
 }

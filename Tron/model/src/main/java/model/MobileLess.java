@@ -5,16 +5,19 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+
 import model.IMobileless;
 
 class MobileLess implements IMobileless{
 	
 	private final Position	position;
 	private final Dimension	dimension;
+	private Direction direction;
 	private ITronModel	tronModel;
 	private Image image;
 	
-	public MobileLess(final Position position, final Dimension dimension, final String image) {
+	public MobileLess(final Direction direction,final Position position, final Dimension dimension, final String image) {
+		this.direction = direction;
 		this.position = position;
 		this.dimension = dimension;
 		try {
@@ -71,5 +74,15 @@ class MobileLess implements IMobileless{
 	@Override
 	public int getHeight() {
 				return this.getDimension().getHeight();
+	}
+
+	@Override
+	public Direction getDirection() {
+		return this.direction;
+	}
+
+	@Override
+	public void setDirection(final Direction direction) {
+		this.direction = direction;
 	}
 }

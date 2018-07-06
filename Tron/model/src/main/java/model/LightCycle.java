@@ -7,8 +7,8 @@ public class LightCycle extends Mobile {
 
 	private final int		player;
 
-	public LightCycle(final int player, final Direction direction, final Position position, final String image) {
-		super(player, direction, position, new Dimension(WIDTH, HEIGHT), SPEED, image);
+	public LightCycle(final int player, final Direction direction, final Position position,final Position olderPosition, final String image) {
+		super(player, direction, position, olderPosition, new Dimension(WIDTH, HEIGHT), SPEED, image);
 		this.player = player;
 	}
 
