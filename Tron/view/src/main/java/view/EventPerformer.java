@@ -25,10 +25,10 @@ class EventPerformer implements IEventPerformer {
 		UserOrder userOrder;
 		switch (keyCode) {
 			case KeyEvent.VK_RIGHT:
-				userOrder = new UserOrder(0, Order.RIGHT);
+				userOrder = new UserOrder(2, Order.RIGHT);
 				break;
 			case KeyEvent.VK_LEFT:
-				userOrder = new UserOrder(0, Order.LEFT);
+				userOrder = new UserOrder(2, Order.LEFT);
 				break;
 
 				

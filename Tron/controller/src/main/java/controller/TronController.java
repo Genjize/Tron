@@ -86,47 +86,7 @@ public class TronController implements IOrderPerformer {
 			}
 		}
 	}
-	/*
-	private void createWalls(final int player) throws IOException {
-		int x = 0;
-		int y = 0;
-		final IMobile plane = this.tronModel.getMobileByPlayer(player);
-		if (plane != null) {
-			switch (plane.getDirection()) {
-			case UP:
-				x = plane.getPosition().getX();
-				y = (plane.getPosition().getY() + 32);
-				break;
-			case RIGHT:
-				x = (plane.getPosition().getX() - 32);
-				y = plane.getPosition().getY();
-				break;
-			case DOWN:
-				x = plane.getPosition().getX();
-				y = (plane.getPosition().getY() - 32);
-				break;
-			case LEFT:
-				x = (plane.getPosition().getX() + 32);
-				y = plane.getPosition().getY();
-				break;
-			default:
-				break;
-		}
-			Position position = new Position(x,y);
-			this.tronModel.addMobileless(new Wall(plane.getDirection(), position, "player1"));
-		}
-	} */
 	
-/*
-	private void createWalls(final int player) throws IOException {
-		final IMobile lightcycle = this.tronModel.getMobileByPlayer(player);
-		
-		if (lightcycle != null) {
-			final Position position = new Position(lightcycle.getOlderPosition().getX(),lightcycle.getOlderPosition().getY());
-			tronModel.addMobileless(new Wall(position, "player1"));
-		}
-	}  */
-
 	private boolean isWeaponOnMobile(final IMobile mobile, final IMobileless weapon) {
 		if (((weapon.getPosition().getX() / weapon.getWidth()) >= (mobile.getPosition().getX() / weapon.getWidth()))
 				&& ((weapon.getPosition().getX() / weapon.getWidth()) <= ((mobile.getPosition().getX() + mobile.getWidth()) / weapon.getWidth()))) {
@@ -160,15 +120,15 @@ public class TronController implements IOrderPerformer {
 	public void play() throws SQLException{
 		long begin = System.currentTimeMillis();
 		this.gameLoop();
-		if(y==1) {
+		if(y==2) {
 			this.viewSystem.displayMessage("Player1 / BLUE - WIN");
 			this.viewSystem.closeAll();
 			this.getTronModel().setExampleByInt(1,(System.currentTimeMillis()-begin)/1000);
 		}
-		else if(y==0) {
+		else if(y==1) {
 			this.viewSystem.displayMessage("Player2 / RED - WIN");
 			this.viewSystem.closeAll();
-			this.getTronModel().setExampleByInt(2,(System.currentTimeMillis()-begin)/1000);
+		    this.getTronModel().setExampleByInt(2,(System.currentTimeMillis()-begin)/1000);
 		}
 	}
 
@@ -192,6 +152,7 @@ public class TronController implements IOrderPerformer {
 			
 			for (final IMobile mobile : initialMobiles){
 				mobile.move();
+
 				
 				for (final IMobileless mobileless : initialMobilesless) {
 					if (mobileless.isWeapon()) {

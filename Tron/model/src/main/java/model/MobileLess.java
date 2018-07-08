@@ -85,4 +85,5 @@ class MobileLess implements IMobileless{
 	public void setDirection(final Direction direction) {
 		this.direction = direction;
 	}
+
 }

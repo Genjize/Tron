@@ -8,7 +8,6 @@ import model.Direction;
 import model.LightCycle;
 import model.Position;
 import model.TronModel;
-import model.Wall;
 import view.TronView;
 
 /*
@@ -38,11 +37,11 @@ public abstract class Main {
 		final TronModel tronModel = new TronModel();
 
 		tronModel.buildArea(new Dimension(600, 400));
-		tronModel.addMobile(new LightCycle(0, Direction.UP, new Position(50, 300), "player1"));
-		tronModel.addMobile(new LightCycle(1, Direction.UP, new Position(500, 300), "player2"));
-		tronModel.addMobileless(new Wall(Direction.UP,new Position(200, 200), "player2"));
-		tronModel.addMobileless(new Wall(Direction.UP,new Position(300, 200), "player1"));
-		//tronModel.addMobileless(new Wall(new Position(1, 1), "player2"));
+		tronModel.addMobile(new LightCycle(1, Direction.UP, new Position(50, 300), "player1"));
+		tronModel.addMobile(new LightCycle(2, Direction.UP, new Position(500, 300), "player2"));
+		//tronModel.addMobileless(new Wall(Direction.UP,new Position(200, 200), "player2"));
+		//tronModel.addMobileless(new Wall(Direction.UP,new Position(300, 200), "player1"));
+		
 	
 
 		final TronController tronController = new TronController(tronModel);

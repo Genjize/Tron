@@ -28,12 +28,11 @@ class Mobile implements IMobile {
 		
 		try {
 			this.buildAllimages(image);
+
 		} catch (final IOException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	
 
 	@Override
 	public Direction getDirection() {
@@ -63,28 +62,46 @@ class Mobile implements IMobile {
 
 	@Override
 	public void move() {
-		try {
-			this.createWalls();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		switch (this.direction) {
 		
 			case LEFT:
 				this.moveLeft();
-				break;
+			try {
+				this.createWalls();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+			break;
 			
 			case RIGHT:
 				this.moveRight();
+				try {
+					this.createWalls();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 				
 			case UP:
 				this.moveUp();
+				try {
+					this.createWalls();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 				
 			case DOWN:
 				this.moveDown();
+				try {
+					this.createWalls();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 				break;
 
 			default:
@@ -92,32 +109,33 @@ class Mobile implements IMobile {
 				break;
 		}
 	}
-	private void createWalls() throws IOException {
-
-			switch (getDirection()) {
-			
-			case UP:
-
+	
+	public void createWalls() throws IOException {
 		
+		Position oldposition = new Position(this.position.getX(),this.position.getY());
+
+			switch (this.getDirection()) {
+			case UP:
+				oldposition.setY(this.position.getY() - this.getHeight() - this.getSpeed());
+	
 				break;
 			case RIGHT:
-
-				
+				oldposition.setX(this.position.getX() + this.getWidth() + this.getSpeed());
+			
 				break;
 			case DOWN:
-
-				
+				oldposition.setY(this.position.getY() + this.getHeight() + this.getSpeed());
+			
 				break;
 			case LEFT:
-
-				
+				oldposition.setX(this.position.getX() - this.getWidth() - this.getSpeed());
+			
 				break;
 			default:
 				break;
 		}
-
-	//		this.tronModel.addMobileless(new Wall(direction, posi, "player1"));
-			
+			this.tronModel.addMobileless(new Wall(this.getDirection(), oldposition, "player"+this.getPlayer()));
+		
 	}
 	
 	private void moveUp() {
