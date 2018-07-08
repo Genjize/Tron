@@ -116,19 +116,19 @@ class Mobile implements IMobile {
 
 			switch (this.getDirection()) {
 			case UP:
-				oldposition.setY(this.position.getY() - this.getHeight() - this.getSpeed());
+				oldposition.setY(this.position.getY() + this.getHeight() + this.getSpeed());
 	
 				break;
 			case RIGHT:
-				oldposition.setX(this.position.getX() + this.getWidth() + this.getSpeed());
+				oldposition.setX(this.position.getX() - this.getWidth() - this.getSpeed());
 			
 				break;
 			case DOWN:
-				oldposition.setY(this.position.getY() + this.getHeight() + this.getSpeed());
+				oldposition.setY(this.position.getY() - this.getHeight() - this.getSpeed());
 			
 				break;
 			case LEFT:
-				oldposition.setX(this.position.getX() - this.getWidth() - this.getSpeed());
+				oldposition.setX(this.position.getX() - this.getWidth() + this.getSpeed());
 			
 				break;
 			default:
