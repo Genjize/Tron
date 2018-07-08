@@ -1,14 +1,12 @@
 package controller;
 
-import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.Direction;
 import model.IMobile;
 import model.IMobileless;
 import model.ITronModel;
-import model.Position;
-import model.Wall;
 import view.IViewSystem;
 
 
@@ -20,8 +18,13 @@ public class TronController implements IOrderPerformer {
 	private int y;
 
 	public TronController(final ITronModel tronModel) {
+		super();
 		this.tronModel = tronModel;
 	}
+	
+    public ITronModel getTronModel() {
+        return this.tronModel;
+    }
 
 	@Override
 	public void orderPerform(final IUserOrder userOrder) {
@@ -154,15 +157,18 @@ public class TronController implements IOrderPerformer {
 		}
 	}
 
-	public void play() {
+	public void play() throws SQLException{
+		long begin = System.currentTimeMillis();
 		this.gameLoop();
 		if(y==1) {
 			this.viewSystem.displayMessage("Player1 / BLUE - WIN");
 			this.viewSystem.closeAll();
+			this.getTronModel().setExampleByInt(1,(System.currentTimeMillis()-begin)/1000);
 		}
 		else if(y==0) {
 			this.viewSystem.displayMessage("Player2 / RED - WIN");
 			this.viewSystem.closeAll();
+			this.getTronModel().setExampleByInt(2,(System.currentTimeMillis()-begin)/1000);
 		}
 	}
 

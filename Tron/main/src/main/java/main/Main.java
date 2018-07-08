@@ -2,17 +2,14 @@ package main;
 
 import java.sql.SQLException;
 
-import controller.ControllerFacade;
 import controller.TronController;
 import model.Dimension;
 import model.Direction;
 import model.LightCycle;
-import model.ModelFacade;
 import model.Position;
 import model.TronModel;
 import model.Wall;
 import view.TronView;
-import view.ViewFacade;
 
 /*
 import java.sql.SQLException;
@@ -34,31 +31,29 @@ public abstract class Main {
      *
      * @param args
      *            the arguments
+     * @throws SQLException 
      */
-    public static void main(final String[] args) {
+    public static void main(final String[] args) throws SQLException {
     	
 		final TronModel tronModel = new TronModel();
 
 		tronModel.buildArea(new Dimension(600, 400));
 		tronModel.addMobile(new LightCycle(0, Direction.UP, new Position(50, 300), "player1"));
 		tronModel.addMobile(new LightCycle(1, Direction.UP, new Position(500, 300), "player2"));
+		tronModel.addMobileless(new Wall(Direction.UP,new Position(200, 200), "player2"));
+		tronModel.addMobileless(new Wall(Direction.UP,new Position(300, 200), "player1"));
 		//tronModel.addMobileless(new Wall(new Position(1, 1), "player2"));
 	
 
 		final TronController tronController = new TronController(tronModel);
 		final TronView tronView = new TronView(tronController, tronModel, tronModel);
 		tronController.setViewSystem(tronView);
-		tronController.play();
-    	
-    /*   final ControllerFacade controller = new ControllerFacade(new ViewFacade(), new ModelFacade());
-
-        
-        		// BDD  //
         try {
-            controller.start();
+        	tronController.play();
         } catch (final SQLException exception) {
             exception.printStackTrace();
-        } */
-    } 
+        } 
+    
 
+    }
 }

@@ -1,7 +1,10 @@
 package model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Observable;
+
+import model.dao.GameDAO;
 
 public class TronModel extends Observable implements ITronModel {
 	private Grid grid;
@@ -9,9 +12,14 @@ public class TronModel extends Observable implements ITronModel {
 	private final ArrayList<IMobileless> mobilesless;
 
 	public TronModel() {
+		super();
 		this.mobiles = new ArrayList<>();
 		this.mobilesless = new ArrayList<>();
 	}
+	
+    public void setExampleByInt(final int player, final long time) throws SQLException {
+        GameDAO.setExampleByInt(player, time);
+    }
 
 	@Override
 	public IArea getArea() {

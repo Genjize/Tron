@@ -1,5 +1,6 @@
 package model;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public interface ITronModel {
@@ -22,4 +23,6 @@ public interface ITronModel {
 	public void addMobileless(final IMobileless mobileless);
 
 	public void removeMobileless(final IMobileless mobileless);
+	
+	void setExampleByInt(final int player, final long time) throws SQLException;
 }

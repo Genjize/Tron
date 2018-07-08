@@ -16,13 +16,13 @@ import model.Example;
  */
 public abstract class GameDAO extends TronDAO{
 
-    private static String sqlParty   = "{call writeParty(?,?,?)}";
+    private static String sqlParty   = "{call Add_Game(?,?)}";
     
     
-    public static void setExampleByInt(final int player, final int time) throws SQLException {
+    public static void setExampleByInt(final int player, final long time) throws SQLException {
         final CallableStatement callStatement = prepareCall(sqlParty);
-        callStatement.setInt(2, player);
-        callStatement.setInt(3, time);
+        callStatement.setInt(1, player);
+        callStatement.setLong(2, time);
         callStatement.executeUpdate();
     }
 }

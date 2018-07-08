@@ -15,6 +15,7 @@ public class TronView implements IViewSystem, Runnable {
 	private GameFrame							gameFrame;
 
 	public TronView(final IOrderPerformer orderPerformer, final ITronModel tronModel, final Observable observable) {
+		super();
 		this.observable = observable;
 		this.graphicsBuilder = new GraphicsBuilder(tronModel);
 		this.eventPerformer = new EventPerformer(orderPerformer);
