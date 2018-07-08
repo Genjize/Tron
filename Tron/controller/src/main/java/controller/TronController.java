@@ -148,7 +148,7 @@ public class TronController implements IOrderPerformer {
 				target.add(mobiles);
 			}
 		}
-		for (final IMobile mobiles : target) {
+		for (@SuppressWarnings("unused") final IMobile mobiles : target) {
 			isTargetHit = isTargetHit || mobile.hit();
 		}
 		if (isTargetHit) {
