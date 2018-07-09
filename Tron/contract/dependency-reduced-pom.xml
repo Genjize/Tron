@@ -6,31 +6,8 @@
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
-  <artifactId>main</artifactId>
-  <name>lorann.main</name>
-  <build>
-    <plugins>
-      <plugin>
-        <artifactId>maven-shade-plugin</artifactId>
-        <version>3.0.0</version>
-        <executions>
-          <execution>
-            <phase>package</phase>
-            <goals>
-              <goal>shade</goal>
-            </goals>
-            <configuration>
-              <transformers>
-                <transformer>
-                  <mainClass>main.Main</mainClass>
-                </transformer>
-              </transformers>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
+  <artifactId>contract</artifactId>
+  <name>lorann.contract</name>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -46,4 +23,3 @@
     </dependency>
   </dependencies>
 </project>
-
