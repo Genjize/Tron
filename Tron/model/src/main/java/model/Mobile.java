@@ -66,42 +66,29 @@ class Mobile implements IMobile {
 		
 			case LEFT:
 				this.moveLeft();
-			try {
-				this.createWalls();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
+				Position oldposition = new Position(this.position.getX() + this.speed + this.getWidth() , this.position.getY());
+				this.tronModel.addMobileless(new Wall(this.getDirection(), oldposition, "player"+this.getPlayer()));
 			break;
 			
 			case RIGHT:
 				this.moveRight();
-				try {
-					this.createWalls();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				Position oldposition2 = new Position(this.position.getX() - this.speed - this.getWidth(), this.position.getY());
+				this.tronModel.addMobileless(new Wall(this.getDirection(), oldposition2, "player"+this.getPlayer()));
+
 				break;
 				
 			case UP:
 				this.moveUp();
-				try {
-					this.createWalls();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				Position oldposition3 = new Position(this.position.getX(), this.position.getY() +this.speed + this.getHeight());
+				this.tronModel.addMobileless(new Wall(this.getDirection(), oldposition3, "player"+this.getPlayer()));
+
 				break;
 				
 			case DOWN:
 				this.moveDown();
-				try {
-					this.createWalls();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+				Position oldposition4 = new Position(this.position.getX(), this.position.getY() - this.speed - this.getHeight());
+				this.tronModel.addMobileless(new Wall(this.getDirection(), oldposition4, "player"+this.getPlayer()));
+
 				break;
 
 			default:
@@ -110,34 +97,7 @@ class Mobile implements IMobile {
 		}
 	}
 	
-	public void createWalls() throws IOException {
-		
-		Position oldposition = new Position(this.position.getX(),this.position.getY());
 
-			switch (this.getDirection()) {
-			case UP:
-				oldposition.setY(this.position.getY() + this.getHeight() + this.getSpeed());
-	
-				break;
-			case RIGHT:
-				oldposition.setX(this.position.getX() - this.getWidth() - this.getSpeed());
-			
-				break;
-			case DOWN:
-				oldposition.setY(this.position.getY() - this.getHeight() - this.getSpeed());
-			
-				break;
-			case LEFT:
-				oldposition.setX(this.position.getX() - this.getWidth() + this.getSpeed());
-			
-				break;
-			default:
-				break;
-		}
-			this.tronModel.addMobileless(new Wall(this.getDirection(), oldposition, "player"+this.getPlayer()));
-		
-	}
-	
 	private void moveUp() {
 		this.position.setY(this.position.getY() - this.speed);
 	}
