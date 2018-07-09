@@ -62,31 +62,62 @@ class Mobile implements IMobile {
 
 	@Override
 	public void move() {
+		int x;
+		int y;
 		switch (this.direction) {
 		
 			case LEFT:
 				this.moveLeft();
-				Position oldposition = new Position(this.position.getX() + this.speed + this.getWidth() , this.position.getY());
+				x = this.position.getX() + this.speed + this.getWidth();
+				if(x>600) {
+					x = x - 600;
+				}
+				else if(x<0) {
+					x = x + 600;
+				}
+				Position oldposition = new Position(x , this.position.getY());
 				this.tronModel.addMobileless(new Wall(this.getDirection(), oldposition, "player"+this.getPlayer()));
-			break;
+				
+				break;
 			
 			case RIGHT:
 				this.moveRight();
-				Position oldposition2 = new Position(this.position.getX() - this.speed - this.getWidth(), this.position.getY());
+				x = this.position.getX() - this.speed - this.getWidth();
+				if(x>600) {
+					x = x - 600;
+				}
+				else if(x<0) {
+					x = x + 600;
+				}
+				Position oldposition2 = new Position(x, this.position.getY());
 				this.tronModel.addMobileless(new Wall(this.getDirection(), oldposition2, "player"+this.getPlayer()));
 
 				break;
 				
 			case UP:
 				this.moveUp();
-				Position oldposition3 = new Position(this.position.getX(), this.position.getY() +this.speed + this.getHeight());
+				y = this.position.getY() +this.speed + this.getHeight();
+				if(y>400) {
+					y = y - 400;
+				}
+				else if(y<0) {
+					y = y + 400;
+				}
+				Position oldposition3 = new Position(this.position.getX(), y);
 				this.tronModel.addMobileless(new Wall(this.getDirection(), oldposition3, "player"+this.getPlayer()));
 
 				break;
 				
 			case DOWN:
 				this.moveDown();
-				Position oldposition4 = new Position(this.position.getX(), this.position.getY() - this.speed - this.getHeight());
+				y = this.position.getY() - this.speed - this.getHeight();
+				if(y>400) {
+					y = y - 400;
+				}
+				else if(y<0) {
+					y = y + 400;
+				}
+				Position oldposition4 = new Position(this.position.getX(), y);
 				this.tronModel.addMobileless(new Wall(this.getDirection(), oldposition4, "player"+this.getPlayer()));
 
 				break;
