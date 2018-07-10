@@ -1,6 +1,6 @@
 package model;
 
-public class Wall extends MobileLess implements IWall{
+public class Wall extends MobileLess {
 	private static int		WIDTH									= 3;
 	private static int		HEIGHT								= 3;
 
